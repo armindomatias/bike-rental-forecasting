@@ -105,9 +105,19 @@ docker-compose logs -f
 git clone <your-repo-url>
 cd ml-project-blueprint
 
-# Create and activate environment
-pyenv env create -f environment.yml
-pyenv activate ml-blueprint
+# Install Python 3.12 using pyenv (if not already installed)
+pyenv install 3.12
+
+# Set local Python version for this project
+pyenv local 3.12
+
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # On macOS/Linux
+# or: venv\Scripts\activate  # On Windows
+
+# Install dependencies
+pip install -r requirements.txt
 
 # Train the model first (if not already trained)
 python app-ml/entrypoint/train.py
